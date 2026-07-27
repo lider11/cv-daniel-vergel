@@ -503,6 +503,57 @@ a.chip-link:hover {
   margin-bottom: 0;
 }
 
+/* ===== Logros / achievements ===== */
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.achievement-card {
+  position: relative;
+  padding: 1.5rem 1.4rem 1.45rem;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.achievement-card:hover {
+  border-color: rgba(167, 139, 250, 0.45);
+  transform: translateY(-2px);
+}
+
+.achievement-num {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--violet);
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(167, 139, 250, 0.35);
+  background: rgba(167, 139, 250, 0.1);
+}
+
+.achievement-card h3 {
+  margin: 0 0 0.55rem;
+  font-size: 1.08rem;
+  letter-spacing: -0.015em;
+}
+
+.achievement-card p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ===== Services / áreas de práctica ===== */
 .services-grid {
   display: grid;
