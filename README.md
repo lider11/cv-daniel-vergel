@@ -1,8 +1,14 @@
 # Hoja de vida web — Daniel Vergel
 
-Página web local con la hoja de vida de **Daniel Enrique Vergel González Rubio**, en estilo moderno tech.
+Página web con la hoja de vida de **Daniel Enrique Vergel González Rubio**, en estilo moderno tech.
 
-## Cómo verla
+## En línea (GitHub Pages)
+
+**URL pública:** https://lider11.github.io/cv-daniel-vergel/
+
+Repositorio: https://github.com/lider11/cv-daniel-vergel
+
+## Cómo verla en local
 
 1. Abre el archivo `index.html` con doble clic, **o**
 2. Desde PowerShell, en esta carpeta:
