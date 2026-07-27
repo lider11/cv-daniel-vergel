@@ -21,11 +21,28 @@
     });
   }
 
-  // Print / PDF
+  // Print (fallback si no se usa el PDF descargable)
   const printBtn = document.getElementById("btn-print");
   if (printBtn) {
     printBtn.addEventListener("click", () => window.print());
   }
+
+  // Si el PDF aún no está en el servidor (404), ofrecer imprimir/guardar PDF
+  document.querySelectorAll("a.btn-download, a.contact-download").forEach((link) => {
+    link.addEventListener("click", async (event) => {
+      const href = link.getAttribute("href");
+      if (!href || !href.endsWith(".pdf")) return;
+      try {
+        const res = await fetch(href, { method: "HEAD", cache: "no-store" });
+        if (!res.ok) {
+          event.preventDefault();
+          window.print();
+        }
+      } catch {
+        // En file:// o sin red, dejar que el navegador maneje el enlace
+      }
+    });
+  });
 
   // Active nav on scroll
   const sections = [...document.querySelectorAll("main section[id]")];

@@ -34,9 +34,11 @@ Luego abre la URL que muestre la terminal (por ejemplo `http://localhost:3000`).
 - Habilidades jurídicas, tecnológicas y de gestión
 - Contacto
 
-## PDF
+## PDF y compartir
 
-Usa el botón **PDF** del encabezado (o `Ctrl+P`) y elige “Guardar como PDF”. Hay estilos de impresión optimizados.
+- **Descargar PDF:** botón en el encabezado, hero y contacto → `assets/CV-Daniel-Vergel.pdf`
+- **Imprimir:** botón *Imprimir* o `Ctrl+P` (estilos optimizados para A4)
+- **Al compartir el enlace** (WhatsApp, LinkedIn, X): se muestra tarjeta con imagen Open Graph (`assets/og-image.jpg`)
 
 ## Archivos
 

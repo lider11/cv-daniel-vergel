@@ -230,11 +230,44 @@ a:hover {
   padding: 0.45rem 0.85rem;
   font-size: 0.8rem;
   font-family: var(--mono);
+  text-decoration: none;
 }
 
 .btn-ghost:hover {
   color: var(--text);
   border-color: rgba(148, 163, 184, 0.4);
+}
+
+a.btn-download {
+  text-decoration: none;
+}
+
+.header-actions .btn-download {
+  color: #a5f3fc;
+  border-color: rgba(34, 211, 238, 0.35);
+  background: rgba(34, 211, 238, 0.08);
+}
+
+.header-actions .btn-download:hover {
+  color: #ecfeff;
+  border-color: rgba(34, 211, 238, 0.55);
+}
+
+.contact-download {
+  border-style: dashed !important;
+  border-color: rgba(34, 211, 238, 0.35) !important;
+  background: rgba(34, 211, 238, 0.06) !important;
+}
+
+.contact-download:hover {
+  border-color: rgba(34, 211, 238, 0.55) !important;
+  background: rgba(34, 211, 238, 0.1) !important;
+}
+
+@media (max-width: 720px) {
+  .header-actions #btn-print {
+    display: none;
+  }
 }
 
 /* ===== Glass panels ===== */
@@ -978,22 +1011,31 @@ a.chip-link:hover {
 
 /* ===== Print / PDF ===== */
 @media print {
+  @page {
+    margin: 12mm;
+    size: A4;
+  }
+
   .bg-grid,
   .bg-glow,
   .site-header,
   .site-footer,
   .hero-cta,
-  .nav-toggle {
+  .nav-toggle,
+  .contact-download,
+  .avatar-ring::after {
     display: none !important;
   }
 
   body {
-    background: #fff;
-    color: #0f172a;
+    background: #fff !important;
+    color: #0f172a !important;
+    font-size: 11pt;
   }
 
   a {
-    color: #0f172a;
+    color: #0f172a !important;
+    text-decoration: none !important;
   }
 
   .glass,
@@ -1003,11 +1045,17 @@ a.chip-link:hover {
   .cert-group,
   .skill-card,
   .contact-card,
-  .contact-item {
+  .contact-item,
+  .service-card,
+  .achievement-card,
+  .avatar-panel,
+  .hero-card {
     background: #fff !important;
     border: 1px solid #cbd5e1 !important;
     box-shadow: none !important;
     backdrop-filter: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   .gradient-text {
