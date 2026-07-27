@@ -65,7 +65,7 @@
 
   // Reveal on scroll
   const revealTargets = document.querySelectorAll(
-    ".panel, .timeline-item, .edu-card, .cert-group, .skill-card, .contact-card, .hero-content, .hero-aside, .avatar-panel, .hero-card, .service-card, .achievement-card"
+    ".panel, .timeline-item, .edu-card, .cert-group, .skill-card, .contact-card, .hero-content, .hero-aside, .avatar-panel, .hero-card, .service-card, .achievement-card, .language-card, .map-wrap"
   );
   revealTargets.forEach((el) => el.classList.add("reveal"));
 

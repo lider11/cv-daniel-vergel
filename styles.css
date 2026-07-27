@@ -855,9 +855,108 @@ a.chip-link:hover {
   color: #a5f3fc;
 }
 
+/* ===== Idiomas ===== */
+.languages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.language-card {
+  padding: 1.4rem 1.35rem 1.45rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.language-card:hover {
+  border-color: rgba(52, 211, 153, 0.4);
+  transform: translateY(-2px);
+}
+
+.language-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.language-top h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.language-level {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--green);
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.language-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.15);
+  overflow: hidden;
+  margin-bottom: 0.9rem;
+}
+
+.language-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--green), var(--cyan));
+}
+
+.language-fill-mid {
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+}
+
+.language-card p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .languages-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ===== Contact ===== */
 .contact-section {
   padding-bottom: 4rem;
+}
+
+.contact-office {
+  border-color: rgba(167, 139, 250, 0.3) !important;
+  background: rgba(167, 139, 250, 0.06) !important;
+}
+
+.contact-office:hover {
+  border-color: rgba(167, 139, 250, 0.5) !important;
+  background: rgba(167, 139, 250, 0.1) !important;
+}
+
+.map-wrap {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.6);
+  min-height: 240px;
+}
+
+.office-map {
+  display: block;
+  width: 100%;
+  height: 260px;
+  border: 0;
+  filter: grayscale(0.15) contrast(1.05);
 }
 
 .contact-card {
@@ -1023,6 +1122,8 @@ a.chip-link:hover {
   .hero-cta,
   .nav-toggle,
   .contact-download,
+  .map-wrap,
+  .office-map,
   .avatar-ring::after {
     display: none !important;
   }
