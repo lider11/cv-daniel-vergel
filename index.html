@@ -29,7 +29,10 @@
   <meta name="twitter:image" content="https://lider11.github.io/cv-daniel-vergel/assets/og-image.jpg" />
 
   <meta name="theme-color" content="#070b14" />
+  <meta name="color-scheme" content="dark" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="mask-icon" href="assets/favicon.svg" color="#22d3ee" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,16 +40,17 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-glow bg-glow-1" aria-hidden="true"></div>
   <div class="bg-glow bg-glow-2" aria-hidden="true"></div>
 
-  <header class="site-header">
+  <header class="site-header" id="site-header">
     <div class="container header-inner">
-      <a class="logo" href="#inicio">
-        <span class="logo-bracket">&lt;</span>DV<span class="logo-bracket">/&gt;</span>
+      <a class="logo" href="#inicio" aria-label="Daniel Vergel — inicio">
+        <span class="logo-bracket" aria-hidden="true">&lt;</span>DV<span class="logo-bracket" aria-hidden="true">/&gt;</span>
       </a>
-      <nav class="nav" id="nav">
+      <nav class="nav" id="nav" aria-label="Secciones de la hoja de vida">
         <a href="#perfil">Perfil</a>
         <a href="#servicios">Servicios</a>
         <a href="#logros">Logros</a>
@@ -65,19 +69,21 @@
           download="CV-Daniel-Vergel.pdf"
           title="Descargar hoja de vida en PDF"
         >
-          Descargar PDF
+          <span class="btn-label-full">Descargar PDF</span>
+          <span class="btn-label-short" aria-hidden="true">PDF</span>
         </a>
         <button type="button" class="btn btn-ghost" id="btn-print" title="Imprimir o guardar como PDF desde el navegador">
           Imprimir
         </button>
-        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
+    <div class="header-progress" id="header-progress" aria-hidden="true"></div>
   </header>
 
-  <main>
+  <main id="contenido">
     <!-- HERO -->
     <section class="hero" id="inicio">
       <div class="container hero-grid">
@@ -669,6 +675,12 @@
       </p>
     </div>
   </footer>
+
+  <button type="button" class="back-top" id="back-top" aria-label="Volver arriba" title="Volver arriba">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
 
   <script src="script.js"></script>
 </body>

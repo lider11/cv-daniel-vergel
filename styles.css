@@ -15,6 +15,7 @@
   --header-h: 72px;
   --font: "Inter", system-ui, -apple-system, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --focus: 0 0 0 3px rgba(34, 211, 238, 0.45);
 }
 
 *,
@@ -36,20 +37,92 @@ body {
   background: var(--bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body.nav-open {
+  overflow: hidden;
 }
 
 img {
   max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.35);
+  color: #f8fafc;
+}
+
+/* Scrollbar (Chromium / Firefox) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.45) rgba(15, 23, 42, 0.8);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.55), rgba(167, 139, 250, 0.55));
+  border-radius: 999px;
+  border: 2px solid rgba(15, 23, 42, 0.8);
 }
 
 a {
   color: var(--cyan);
   text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition: color 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
 }
 
 a:hover {
   color: #67e8f9;
+}
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: 6px;
+}
+
+.btn:focus-visible,
+.nav a:focus-visible,
+.contact-item:focus-visible,
+.chip-link:focus-visible,
+.skip-link:focus-visible,
+.back-top:focus-visible,
+.logo:focus-visible {
+  box-shadow: var(--focus);
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  background: #0f172a;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  color: #ecfeff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
 }
 
 .container {
@@ -116,9 +189,29 @@ a:hover {
   top: 0;
   z-index: 50;
   height: var(--header-h);
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px) saturate(1.2);
   background: rgba(7, 11, 20, 0.75);
   border-bottom: 1px solid var(--border);
+  transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  /* containing block for progress bar */
+  isolation: isolate;
+}
+
+.site-header.is-scrolled {
+  background: rgba(7, 11, 20, 0.92);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  border-bottom-color: rgba(34, 211, 238, 0.12);
+}
+
+.header-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--pink));
+  transition: width 0.1s linear;
+  pointer-events: none;
 }
 
 .header-inner {
@@ -147,14 +240,39 @@ a:hover {
 }
 
 .nav a {
+  position: relative;
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 500;
+  padding: 0.2rem 0;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--violet));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
 }
 
 .nav a:hover,
 .nav a.active {
   color: var(--text);
+}
+
+.nav a.active::after,
+.nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.btn-label-short {
+  display: none;
 }
 
 .header-actions {
@@ -166,11 +284,13 @@ a:hover {
 .nav-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
   background: transparent;
   border: 0;
-  padding: 0.4rem;
+  padding: 0.45rem;
   cursor: pointer;
+  border-radius: 8px;
 }
 
 .nav-toggle span {
@@ -179,7 +299,20 @@ a:hover {
   height: 2px;
   background: var(--text);
   border-radius: 2px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ===== Buttons ===== */
@@ -267,6 +400,14 @@ a.btn-download {
 @media (max-width: 720px) {
   .header-actions #btn-print {
     display: none;
+  }
+
+  .btn-label-full {
+    display: none;
+  }
+
+  .btn-label-short {
+    display: inline;
   }
 }
 
@@ -497,6 +638,12 @@ a.chip-link:hover {
 /* ===== Sections ===== */
 .section {
   padding: 3.5rem 0;
+  border-top: 1px solid transparent;
+  background-image: linear-gradient(
+    180deg,
+    rgba(148, 163, 184, 0.04),
+    transparent 28px
+  );
 }
 
 .section-head {
@@ -1029,6 +1176,41 @@ a.chip-link:hover {
   margin: 0;
 }
 
+/* ===== Back to top ===== */
+.back-top {
+  position: fixed;
+  right: 1.15rem;
+  bottom: 1.15rem;
+  z-index: 40;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: rgba(7, 11, 20, 0.88);
+  color: var(--cyan);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+.back-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+
+.back-top:hover {
+  background: rgba(34, 211, 238, 0.12);
+  border-color: rgba(34, 211, 238, 0.55);
+  color: #ecfeff;
+}
+
 /* ===== Reveal animation ===== */
 .reveal {
   opacity: 0;
@@ -1039,6 +1221,29 @@ a.chip-link:hover {
 .reveal.visible {
   opacity: 1;
   transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .avatar-ring::after {
+    animation: none;
+  }
 }
 
 /* ===== Responsive ===== */
@@ -1124,7 +1329,10 @@ a.chip-link:hover {
   .contact-download,
   .map-wrap,
   .office-map,
-  .avatar-ring::after {
+  .avatar-ring::after,
+  .back-top,
+  .skip-link,
+  .header-progress {
     display: none !important;
   }
 
