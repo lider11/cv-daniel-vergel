@@ -400,6 +400,18 @@ a:hover {
   background: rgba(255, 255, 255, 0.02);
 }
 
+a.chip-link {
+  color: var(--cyan);
+  border-color: rgba(34, 211, 238, 0.35);
+  background: rgba(34, 211, 238, 0.08);
+  text-decoration: none;
+}
+
+a.chip-link:hover {
+  color: #67e8f9;
+  border-color: rgba(34, 211, 238, 0.55);
+}
+
 .hero-cta {
   display: flex;
   flex-wrap: wrap;
@@ -682,6 +694,10 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.85rem;
+}
+
+.contact-item-wide {
+  grid-column: 1 / -1;
 }
 
 .contact-item {
