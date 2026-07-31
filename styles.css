@@ -1548,3 +1548,31 @@ body{background:#f4f1e9;color:#142b3f}.bg-grid{background-image:linear-gradient(
 @media(max-width:960px){.hero::before{width:100%;height:32%;top:auto;bottom:0}.nav{background:#f4f1e9}}
 @media(max-width:560px){.logo-name{display:none}.hero h1{font-size:clamp(2.8rem,14vw,4.2rem)}}
 @media print{.hero::before{display:none}.credentials-card{background:#fff!important;color:#152b3f!important;border:1px solid #ccd3d8}.credential-row span,.credential-list{color:#3f5261!important}}
+
+/* Mejora de contraste en textos secundarios de tarjetas */
+.tags span {
+  color: #334e62;
+  background: #f4f6f7;
+  border-color: #bdc8cf;
+  font-weight: 600;
+}
+
+.tags-tech span {
+  color: #17677a;
+  background: #e7f5f7;
+  border-color: #82cbd4;
+}
+
+.service-card p,
+.achievement-card p,
+.language-card p,
+.timeline-item li,
+.cert-list li {
+  color: #465c6c;
+}
+
+.cert-list .hours,
+.timeline-meta .loc {
+  color: #765a31;
+  font-weight: 600;
+}
