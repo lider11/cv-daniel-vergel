@@ -1547,7 +1547,15 @@ body{background:#f4f1e9;color:#142b3f}.bg-grid{background-image:linear-gradient(
 .btn{border-radius:3px}.btn-primary{background:#10283f;color:#fff;box-shadow:0 10px 24px rgba(16,40,63,.17)}.btn-primary:hover{background:#1b3d58;color:#fff}.btn-outline,.btn-ghost{color:#10283f;border-color:rgba(16,40,63,.22);background:transparent}.btn-outline:hover,.btn-ghost:hover{background:#fff;color:#10283f;border-color:#b48a4a}.section:nth-of-type(even){background:rgba(255,255,255,.36)}.section-kicker{color:#a27c42;letter-spacing:.16em}.section-head h2{color:#10283f;font-size:clamp(2.2rem,4vw,3.5rem)}.section-sub,.panel p{color:#596976}.value-quote{border-left-color:#b48a4a;background:rgba(180,138,74,.07);color:#253f53;font-family:"Libre Caslon Display",serif;font-size:1.25rem}.service-icon{color:#a27c42;background:rgba(180,138,74,.09);border-color:rgba(180,138,74,.2)}.service-card h3,.achievement-card h3,.timeline-item h3,.edu-card h3,.cert-group h3,.skill-card h3,.language-card h3{color:#10283f}.service-card-featured{background:#10283f}.service-card-featured h3,.service-card-featured p{color:#f4f1e9}.achievement-num,.timeline-meta,.hours,.language-level{color:#9a7540}.timeline::before{background:rgba(180,138,74,.35)}.timeline-item::before{background:#b48a4a;border-color:#f4f1e9}.tag{background:rgba(16,40,63,.06);border-color:rgba(16,40,63,.12);color:#425a6d}.tags-tech .tag{background:rgba(180,138,74,.08);border-color:rgba(180,138,74,.2);color:#795c32}.language-fill{background:#10283f}.contact-card{background:#10283f;color:#f4f1e9}.contact-card .section-head h2,.contact-card .contact-value{color:#fff}.contact-card .section-sub,.contact-card .contact-label{color:#bdc8cf}.contact-item{border-color:rgba(255,255,255,.13)}.contact-item:hover{border-color:#d7bd8f;background:rgba(255,255,255,.05)}.site-footer{background:#0c2132;border-color:transparent}.site-footer,.site-footer .muted{color:#b9c4cb}.back-top{background:#10283f;color:#fff;border-color:#b48a4a}
 @media(max-width:960px){.hero::before{width:100%;height:32%;top:auto;bottom:0}.nav{background:#f4f1e9}}
 @media(max-width:560px){.logo-name{display:none}.hero h1{font-size:clamp(2.8rem,14vw,4.2rem)}}
-@media print{.hero::before{display:none}.credentials-card{background:#fff!important;color:#152b3f!important;border:1px solid #ccd3d8}.credential-row span,.credential-list{color:#3f5261!important}}
+@media print{
+  .hero::before{display:none}
+  .credentials-card{background:#fff!important;color:#152b3f!important;border:1px solid #ccd3d8}
+  .credential-row span,.credential-list{color:#3f5261!important}
+  .service-card-featured,.contact-card{background:#fff!important;color:#152b3f!important}
+  .service-card-featured h3,.service-card-featured p,.contact-card .section-head h2,.contact-card .section-sub,.contact-card .contact-label,.contact-card .contact-value{color:#152b3f!important}
+  .contact-item{border-color:#cbd5e1!important}
+  .section-head{break-inside:avoid;page-break-inside:avoid;break-after:avoid-page;page-break-after:avoid}
+}
 
 /* Mejora de contraste en textos secundarios de tarjetas */
 .tags span {
