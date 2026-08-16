@@ -37,20 +37,35 @@
     printBtn.addEventListener("click", () => window.print());
   }
 
-  // Si el PDF aún no está en el servidor (404), ofrecer imprimir/guardar PDF
+  // Forzar una descarga real. Algunos navegadores embebidos ignoran el atributo
+  // `download` y abren el PDF en la misma pestaña.
   document.querySelectorAll("a.btn-download, a.contact-download").forEach((link) => {
-    link.addEventListener("click", async (event) => {
-      const href = link.getAttribute("href");
-      if (!href || !href.endsWith(".pdf")) return;
-      try {
-        const res = await fetch(href, { method: "HEAD", cache: "no-store" });
-        if (!res.ok) {
-          event.preventDefault();
-          window.print();
-        }
-      } catch {
-        // En file:// o sin red, dejar que el navegador maneje el enlace
-      }
+    link.addEventListener("click", (event) => {
+      const href = link.href;
+      const filename = link.getAttribute("download") || "CV-Daniel-Vergel.pdf";
+      if (!href) return;
+
+      event.preventDefault();
+
+      fetch(href, { cache: "no-store" })
+        .then((response) => {
+          if (!response.ok) throw new Error(`PDF no disponible: ${response.status}`);
+          return response.blob();
+        })
+        .then((blob) => {
+          const objectUrl = URL.createObjectURL(blob);
+          const downloadLink = document.createElement("a");
+          downloadLink.href = objectUrl;
+          downloadLink.download = filename;
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          downloadLink.remove();
+          setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+        })
+        .catch(() => {
+          // Si el navegador bloquea la descarga programática, abrir el PDF.
+          window.location.assign(href);
+        });
     });
   });
 
